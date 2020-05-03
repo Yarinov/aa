@@ -82,31 +82,7 @@ class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
         return appsList.size();
     }
 
-    private void loadAppIcon(final ImageView appIconImageView, final String appIconUrl) {
-
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                InputStream in = null;
-
-                try {
-                    URL url = new URL(appIconUrl);
-                    URLConnection urlConn = url.openConnection();
-                    HttpURLConnection httpConn = (HttpURLConnection) urlConn;
-                    httpConn.connect();
-
-                    in = httpConn.getInputStream();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Bitmap bmpimg = BitmapFactory.decodeStream(in);
-                appIconImageView.setImageBitmap(bmpimg);
-            }
-        });
-    }
-
+ 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView appNameLabel, appVersionLabel;
